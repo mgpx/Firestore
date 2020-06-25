@@ -17,6 +17,7 @@ public fun <T: FirestoreDocument> DocumentSnapshot.toFirestoreDocument(type: KCl
             new.clearDirt() // Clear dirtyness from init().
             FirestoreDocument.CACHE.put(reference.id, new)
             new.cacheState = FirestoreDocument.CacheState.FRESH
+            new.documentSnapshot = this
             new
         } else {
             if (metadata.isFromCache) {
@@ -43,6 +44,7 @@ public fun <T: FirestoreDocument> DocumentSnapshot.toFirestoreDocument(type: KCl
         new.clearDirt() // Clear dirtyness from init().
         FirestoreDocument.CACHE.put(reference.id, new)
         new.cacheState = FirestoreDocument.CacheState.FRESH
+        new.documentSnapshot = this
         new
     }
     result.id = reference.id

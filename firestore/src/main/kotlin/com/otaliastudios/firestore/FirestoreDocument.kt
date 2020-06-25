@@ -25,6 +25,7 @@ abstract class FirestoreDocument(
         source: Map<String, Any?>? = null
 ) : FirestoreMap<Any?>(source = source) {
 
+
     @Suppress("MemberVisibilityCanBePrivate", "RedundantModalityModifier")
     @Exclude
     final fun isNew(): Boolean {
@@ -43,6 +44,13 @@ abstract class FirestoreDocument(
     fun getReference(): DocumentReference {
         if (id == null) throw IllegalStateException("Cant return reference for unsaved data.")
         return requireReference()
+    }
+
+    internal var documentSnapshot : DocumentSnapshot? = null
+
+    @Exclude
+    fun getDocumentSnapshot() : DocumentSnapshot?{
+        return documentSnapshot
     }
 
     @get:Keep @set:Keep
